@@ -241,3 +241,137 @@ graph TD
     Room2 --> U4
 ```
 
+## Performance Evaluation
+
+To evaluate the performance and reliability of the secure multi-room chat system, several tests were conducted with multiple concurrent users connected to the server over a local network.
+
+### Test Environment
+
+| Component      | Description                               |
+| -------------- | ----------------------------------------- |
+| Server Machine | Python TCP server with SSL/TLS encryption |
+| Clients        | user1, user2, user3, user4                |
+| Network        | Local Area Network (LAN)                  |
+| Protocol       | TCP                                       |
+| Security       | SSL/TLS encrypted communication           |
+
+---
+
+### Test 1 – Multiple Concurrent Clients
+
+**Objective:**
+Verify that the server can handle multiple simultaneous connections.
+
+**Procedure:**
+
+1. Start the secure chat server.
+2. Connect four users: **user1, user2, user3, and user4**.
+3. Observe server logs and communication between clients.
+
+**Observation:**
+
+```text
+[SECURE SERVER STARTED] Listening on port 5000
+[ACTIVE CLIENTS] 4
+[NEW USER] user1 joined
+[NEW USER] user2 joined
+[NEW USER] user3 joined
+[NEW USER] user4 joined
+```
+
+**Result:**
+The server successfully handled four concurrent client connections using multithreading.
+
+---
+
+### Test 2 – Chat Room Messaging
+
+**Objective:**
+Verify that messages are delivered only to users within the same chat room.
+
+**Procedure:**
+
+* user1 joins `room1`
+* user2 joins `room1`
+* user3 joins `room2`
+* user4 joins `room2`
+
+**Command Example**
+
+```text
+JOIN room1
+MSG Hello everyone
+```
+
+**Observation:**
+
+* user2 receives the message from user1
+* user3 and user4 do not receive the message
+
+**Result:**
+Messages are correctly routed only to members of the same chat room.
+
+---
+
+### Test 3 – Private Messaging
+
+**Objective:**
+Verify that private messages are delivered only to the intended user.
+
+**Command Example**
+
+```text
+PM user2 Hello user2
+```
+
+**Observation:**
+
+* Only **user2** receives the private message.
+* user3 and user4 cannot see the message.
+
+**Result:**
+Private messaging between users works correctly.
+
+---
+
+### Test 4 – File Transfer
+
+**Objective:**
+Verify reliable file transfer between users.
+
+**Command Example**
+
+```text
+FILE user3 notes.txt
+```
+
+**Procedure:**
+
+1. user1 sends `notes.txt` to user3.
+2. The file is transferred through the server.
+
+**Observation:**
+
+* user3 receives the file successfully.
+* The file is saved locally as:
+
+```text
+received_notes.txt
+```
+
+**Result:**
+The system successfully supports file transfer between clients through the server.
+
+---
+
+### Performance Summary
+
+| Metric             | Observation                      |
+| ------------------ | -------------------------------- |
+| Concurrent Clients | Successfully handled 4 clients   |
+| Message Delivery   | Instant communication within LAN |
+| File Transfer      | Reliable transfer of notes.txt   |
+| System Stability   | No crashes during testing        |
+
+**Conclusion:**
+The secure chat system performed reliably under multiple concurrent users. The multithreaded server architecture allowed simultaneous communication between clients, while TCP ensured reliable data transmission and SSL/TLS provided secure encrypted communication.
