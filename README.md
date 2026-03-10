@@ -204,10 +204,10 @@ These mechanisms improve the robustness of the chat system and ensure stable ope
 ```mermaid
 graph TD
 
-    C1[Client 1]
-    C2[Client 2]
-    C3[Client 3]
-    C4[Client 4]
+    U1[user1]
+    U2[user2]
+    U3[user3]
+    U4[user4]
 
     SSL[SSL/TLS Secure Connection]
 
@@ -220,10 +220,10 @@ graph TD
     Room1[Room 1]
     Room2[Room 2]
 
-    C1 --> SSL
-    C2 --> SSL
-    C3 --> SSL
-    C4 --> SSL
+    U1 --> SSL
+    U2 --> SSL
+    U3 --> SSL
+    U4 --> SSL
 
     SSL --> Server
 
@@ -234,8 +234,10 @@ graph TD
     Rooms --> Room1
     Rooms --> Room2
 
-    Room1 --> C1
-    Room1 --> C2
+    Room1 --> U1
+    Room1 --> U2
 
-    Room2 --> C3
-    Room2 --> C4
+    Room2 --> U3
+    Room2 --> U4
+```
+
