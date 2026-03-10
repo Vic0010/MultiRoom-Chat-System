@@ -186,3 +186,15 @@ Possible improvements include:
 - Implementing **distributed server architecture** for improved scalability
 
 
+## Error Handling and Stability
+
+The system includes several mechanisms to improve stability and reliability.
+
+- Client disconnections are detected and handled gracefully by removing the client from active lists and chat rooms.
+- Invalid commands are ignored or result in appropriate error messages.
+- Private messages to non-existent users return a "User not found" response.
+- Users attempting to send messages without joining a room are prompted to join a room first.
+- File transfer errors such as missing files are handled on the client side.
+- The server uses multithreading to ensure that one client failure does not affect other active connections.
+
+These mechanisms improve the robustness of the chat system and ensure stable operation under concurrent usage.
