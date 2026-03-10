@@ -198,3 +198,44 @@ The system includes several mechanisms to improve stability and reliability.
 - The server uses multithreading to ensure that one client failure does not affect other active connections.
 
 These mechanisms improve the robustness of the chat system and ensure stable operation under concurrent usage.
+
+## Complete System Overview
+
+```mermaid
+graph TD
+
+    C1[Client 1]
+    C2[Client 2]
+    C3[Client 3]
+    C4[Client 4]
+
+    SSL[SSL/TLS Secure Connection]
+
+    Server[Secure Chat Server]
+
+    Rooms[Chat Room Manager]
+    File[File Transfer Module]
+    PM[Private Messaging Module]
+
+    Room1[Room 1]
+    Room2[Room 2]
+
+    C1 --> SSL
+    C2 --> SSL
+    C3 --> SSL
+    C4 --> SSL
+
+    SSL --> Server
+
+    Server --> Rooms
+    Server --> File
+    Server --> PM
+
+    Rooms --> Room1
+    Rooms --> Room2
+
+    Room1 --> C1
+    Room1 --> C2
+
+    Room2 --> C3
+    Room2 --> C4
