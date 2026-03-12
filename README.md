@@ -92,7 +92,7 @@ Clients interact with the server to:
 
 ---
 
-#Protocol Design
+# Protocol Design
 
 The system uses a simple text-based protocol.
 
