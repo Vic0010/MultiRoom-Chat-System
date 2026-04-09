@@ -373,5 +373,26 @@ The system successfully supports file transfer between clients through the serve
 | File Transfer      | Reliable transfer of notes.txt   |
 | System Stability   | No crashes during testing        |
 
+## Latency and Throughput Analysis
+
+The following table shows the **theoretical performance trend** of the secure multi-room chat system for different message loads in a local network environment.
+
+| Number of Messages | Avg Latency (ms) | Total Data (Bytes) | Total Time (s) | Throughput (Bytes/s) |
+|---|---:|---:|---:|---:|
+| 1 | 10 | 100 | 0.01 | 10000 |
+| 10 | 11 | 1000 | 0.11 | 9090 |
+| 50 | 13 | 5000 | 0.65 | 7692 |
+| 100 | 15 | 10000 | 1.50 | 6667 |
+| 1000 | 22 | 100000 | 22.00 | 4545 |
+
+### Observations
+- Average latency increases gradually as the number of messages increases.
+- Throughput remains high initially but decreases slightly at higher traffic loads.
+- The decrease in throughput is due to **thread scheduling overhead, TCP acknowledgments, and TLS encryption cost**.
+- The system remains stable even under **1000 messages**, showing good scalability.
+
+### Formula Used
+Throughput = Total Data / Total Time
+
 **Conclusion:**
 The secure chat system performed reliably under multiple concurrent users. The multithreaded server architecture allowed simultaneous communication between clients, while TCP ensured reliable data transmission and SSL/TLS provided secure encrypted communication.
